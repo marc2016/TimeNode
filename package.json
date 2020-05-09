@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/marc2016/TimeNode/issues"
   },
-  "homepage": "https://github.com/marc2016/TimeNode#readme"
+  "homepage": "https://github.com/marc2016/TimeNode#readme",
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "prettier": "2.0.5",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.3.0"
+  }
 }
