@@ -27,5 +27,12 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.3.0",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@types/node": "^13.13.5",
+    "express": "^4.17.1",
+    "passport": "^0.4.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.24"
   }
 }
