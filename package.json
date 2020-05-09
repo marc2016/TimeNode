@@ -4,7 +4,8 @@
   "description": "Time Node server.",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "test": "jest --config jest.json"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,11 @@
   },
   "homepage": "https://github.com/marc2016/TimeNode#readme",
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel-jest": "^26.0.1",
     "eslint": "^7.0.0",
+    "jest": "^26.0.1",
     "prettier": "2.0.5",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.3.0",
