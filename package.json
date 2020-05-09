@@ -20,6 +20,7 @@
     "eslint": "^7.0.0",
     "prettier": "2.0.5",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.3.0"
+    "tslint-plugin-prettier": "^2.3.0",
+    "typescript": "^3.8.3"
   }
 }
