@@ -22,13 +22,12 @@ export class AuthController {
   @UseGuards(AuthGuard('local'))
   @Post('login')
   async login(@Response() response, @Body() loginDto: LoginDto) {
-    const user = await this.usersService.findOneByUsername(loginDto.username)
-    if (!user) {
+    const token = await this.authService.login(loginDto)
+    if (!token) {
       response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         message: 'User Not Found'
       })
     } else {
-      const token = this.authService.createToken(user)
       return response.status(HttpStatus.OK).json(token)
     }
   }

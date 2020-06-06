@@ -3,6 +3,8 @@ import { Injectable } from '@nestjs/common'
 import { UsersService } from 'src/users/users.service'
 import { User } from 'src/users/user.entity'
 import { ConfigService } from '@nestjs/config'
+import { LoginDto } from './domain/LoginDto'
+import { Token } from './domain/Token'
 
 @Injectable()
 export class AuthService {
@@ -11,7 +13,7 @@ export class AuthService {
     private usersService: UsersService
   ) {}
 
-  createToken(user: User) {
+  createToken(user: User): Token {
     const expiresIn = this.configService.get<string>('JWT_EXPIRES_IN')
     const secret = this.configService.get<string>('JWT_SECRET')
 
@@ -38,5 +40,11 @@ export class AuthService {
       return result
     }
     return null
+  }
+
+  async login(loginDto: LoginDto): Promise<Token> {
+    const user = await this.usersService.findOneByUsername(loginDto.username)
+    const token = this.createToken(user)
+    return token
   }
 }
