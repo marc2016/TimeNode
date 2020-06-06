@@ -6,6 +6,7 @@ import { AppService } from './app.service'
 import { TimersModule } from './timers/timers.module'
 import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
+import { TasksModule } from './tasks/tasks.module'
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { AuthModule } from './auth/auth.module'
     TypeOrmModule.forRoot(),
     TimersModule,
     UsersModule,
-    AuthModule
+    AuthModule,
+    TasksModule
   ],
   controllers: [AppController],
   providers: [AppService]
