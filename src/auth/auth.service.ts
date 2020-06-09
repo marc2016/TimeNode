@@ -5,6 +5,7 @@ import { User } from 'src/users/user.entity'
 import { ConfigService } from '@nestjs/config'
 import { LoginDto } from './domain/LoginDto'
 import { Token } from './domain/Token'
+import { JwtContent } from './domain/JwtContent'
 
 @Injectable()
 export class AuthService {
@@ -14,7 +15,9 @@ export class AuthService {
   ) {}
 
   createToken(user: User): Token {
-    const expiresIn = this.configService.get<string>('JWT_EXPIRES_IN')
+    const expiresIn: number = Number(
+      this.configService.get<number>('JWT_EXPIRES_IN')
+    )
     const secret = this.configService.get<string>('JWT_SECRET')
 
     const accessToken = jwt.sign(
@@ -23,14 +26,20 @@ export class AuthService {
         email: user.username,
         firstname: user.firstName,
         lastname: user.lastName
-      },
+      } as JwtContent,
       secret,
-      { expiresIn }
+      { expiresIn: expiresIn }
     )
     return {
       expiresIn,
       accessToken
     }
+  }
+
+  async validateUserJwt(jwtObj: JwtContent): Promise<any> {
+    const user = await this.usersService.findOneByUsername(jwtObj.email)
+    const { password, ...result } = user
+    return result
   }
 
   async validateUser(username: string, pass: string): Promise<any> {
