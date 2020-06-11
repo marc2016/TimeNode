@@ -4,7 +4,9 @@ import {
   PrimaryGeneratedColumn,
   BeforeInsert,
   OneToOne,
-  JoinColumn
+  JoinColumn,
+  ManyToOne,
+  JoinTable
 } from 'typeorm'
 import { User } from 'src/users/user.entity'
 
@@ -19,7 +21,6 @@ export class Task {
   @Column()
   note: string
 
-  @OneToOne(type => User)
-  @JoinColumn()
+  @ManyToOne(type => User)
   user: User
 }
