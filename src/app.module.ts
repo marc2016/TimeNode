@@ -7,6 +7,7 @@ import { TimersModule } from './timers/timers.module'
 import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
 import { TasksModule } from './tasks/tasks.module'
+import { TimeEntryModule } from './time-entry/time-entry.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { TasksModule } from './tasks/tasks.module'
     TimersModule,
     UsersModule,
     AuthModule,
-    TasksModule
+    TasksModule,
+    TimeEntryModule
   ],
   controllers: [AppController],
   providers: [AppService]
