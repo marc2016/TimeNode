@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { TimeEntry } from './time-entry.entity'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
+import { User } from 'src/users/user.entity'
 
 @Injectable()
 export class TimeEntryService {
@@ -18,10 +19,10 @@ export class TimeEntryService {
     return timeEntries
   }
 
-  async findAllByDate(date: Date) {
+  async findAllByDate(userId: string, date: Date) {
     const timeEntries = await this.timeEntryRepository.find({
       relations: ['task'],
-      where: { date: date }
+      where: { user: { id: userId }, date: date }
     })
     return timeEntries
   }
